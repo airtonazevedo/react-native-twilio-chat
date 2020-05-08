@@ -121,8 +121,8 @@ const contactList: React.FC = () => {
     //useEffect(() => { console.log(contacts) }, [contacts])
 
     const addUser = () => {
-        navigation.navigate('Modal')
-        return false
+        //navigation.navigate('Modal')
+        //return false
 
         const okPress = async (txt: string) => {
             if (user.name == txt)
