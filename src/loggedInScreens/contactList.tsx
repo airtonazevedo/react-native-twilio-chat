@@ -61,7 +61,8 @@ const Item = ({ item }: itemProps) => {
 }
 
 const contactList: React.FC = () => {
-
+    const navigation = useNavigation();
+  
     const { user, login } = useAuth()
     const [contacts, setContacts] = useState<ContactsType[]>([])
     const [myClient, setClient] = useState<Chat>({} as Chat)
@@ -120,6 +121,9 @@ const contactList: React.FC = () => {
     //useEffect(() => { console.log(contacts) }, [contacts])
 
     const addUser = () => {
+        navigation.navigate('Modal')
+        return false
+
         const okPress = async (txt: string) => {
             if (user.name == txt)
                 return Alert.alert('This is your username')

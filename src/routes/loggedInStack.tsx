@@ -8,10 +8,20 @@ import { Text } from 'react-native';
 import { Channel } from 'twilio-chat/lib/channel'
 import { RouteProp } from '@react-navigation/native';
 import { Client } from 'twilio-chat';
+import Modal, {ModalProps} from 'react-navigation-modal'
+
+const modalTest = () => {
+    return (
+        <Modal cancelable={true}>
+            <Text>Oioioi</Text>
+        </Modal>
+    )
+}
 
 type RootStackParamList = {
     'Contact List': { user: UserType },
-    Chat: { channel: Channel, title: string }
+    Chat: { channel: Channel, title: string },
+    Modal: {}
 };
 
 type ProfileScreenRouteProp = RouteProp<RootStackParamList, 'Chat'>;
@@ -44,9 +54,11 @@ const LoggedOutStack: React.FC = () => {
 
     const { logout, user } = useAuth();
     return (
-        <Stack.Navigator screenOptions={options}>
+        <Stack.Navigator headerMode="screen" mode="modal" screenOptions={options}>
             <Stack.Screen name="Contact List" component={ContactList} options={({ route }) => ({ title: 'Contact List - ' + user.name })} />
             <Stack.Screen name="Chat" component={Chat} options={({ route }) => ({ title: route.params.title })} />
+            <Stack.Screen name="Modal" component={modalTest}  />
+       
         </Stack.Navigator>
     )
 }
